@@ -43,28 +43,28 @@
         {
             if (customers[i].balance < 0)
             {
-                let para = document.createElement("p");
-                para.setAttribute("class", "letter");
+                let paraDiv = document.createElement("div");
+                paraDiv.setAttribute("class", "letter");
                 letterText = "Hello " + customers[i].fname + ", this is an attempt to collect a debt owed to " + bankName + ". Your account is past due by the amount of " + customers[i].balance + ".";
-                para.textContent = letterText;
-                custLet.appendChild(para);
+                paraDiv.textContent = letterText;
+                custLet.appendChild(paraDiv);
             }
             else if (customers[i].balance == 0)
             {
-                let para = document.createElement("p");
-                para.setAttribute("class", "letter");
+                let paraDiv = document.createElement("div");
+                paraDiv.setAttribute("class", "letter");
                 letterText = "Hello " + customers[i].fname + ", greetings from " + bankName + ". Your balance is current. No need for action until next month.";
-                para.textContent = letterText;
-                custLet.appendChild(para);
+                paraDiv.textContent = letterText;
+                custLet.appendChild(paraDiv);
             }
             else if (customers[i].balance > 0)
             {
-                let para = document.createElement("p");
-                para.setAttribute("class", "letter");
+                let paraDiv = document.createElement("div");
+                paraDiv.setAttribute("class", "letter");
                 customers[i].rate = lowerRate(customers[i].rate);
                 letterText = "Hello " + customers[i].fname + ", greetings from " + bankName + ". Because you are such a great customer, we're lowering your interest rate to " + customers[i].rate + "%.";
-                para.textContent = letterText;
-                custLet.appendChild(para);
+                paraDiv.textContent = letterText;
+                custLet.appendChild(paraDiv);
             }
         }
 

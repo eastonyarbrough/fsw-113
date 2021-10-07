@@ -35,6 +35,8 @@ function printCalendar() {
         default:
             days = 31
     }
+
+    document.getElementById('calendarDays').innerHTML = ""
         
     let x
     const weekday = today.getDay()
@@ -47,10 +49,6 @@ function printCalendar() {
         dt++
         document.getElementById('calendarDays').innerHTML += `<div class='calendarCell'>${dt}</div`
     } while ( dt < days)
-
-    const monthName = today.toLocaleDateString('default', {month:'long'})
-    const year = today.getFullYear()
-    document.querySelector('.calendarTitle').innerText = `${monthName} ${year}`
 
     const remainder = (7 - ((x + dt) % 7))
     let y = 0

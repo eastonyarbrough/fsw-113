@@ -4,6 +4,9 @@ let selectMonth = document.querySelector("#monthSelect");
 let goBtn = document.querySelector("#btnGo");
 let userYear = document.querySelector("#yearInput");
 
+userYear.value = new Date().getFullYear();
+selectMonth.value = myMonths[0];
+
 // you can use either a for loop or an array.map to populate the select. remember that while arrays start with 
 // zero, month numbers go from 1-12
 window.addEventListener("load", function() {
@@ -13,6 +16,8 @@ window.addEventListener("load", function() {
         popMonth.setAttribute("value", myMonths[i]);
         popMonth.textContent = myMonths[i];
         selectMonth.appendChild(popMonth);
+        //Print current month calendar on load.
+        printCalendar();
     }
 });
 

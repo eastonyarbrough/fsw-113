@@ -23,17 +23,109 @@ const parts = [
 ]
 
 // list of each part number and qty for check-off in the "detailsList" element
+let listDetails = document.querySelector("#detailsList");
+
+parts.forEach(function(e, i) {
+    let partContainer = document.createElement("div");
+    let addCheckbox = document.createElement("input");
+    let addText = document.createElement("lable");
+    addCheckbox.setAttribute("type", "checkbox");
+    addText.textContent = `${parts[i].qty} (${parts[i].partNbr}) - ${parts[i].partDescr}`;
+    partContainer.appendChild(addCheckbox);
+    partContainer.appendChild(addText);
+    listDetails.appendChild(partContainer);
+});
 
 // if parts requiring special handling exist (in aisle B3), list of items needing 
 // special packaging in the "specialPackaging" element, else remove element
+let packagingBox = document.querySelector("#specialPackaging");
+
+let specPackageExist = parts.some(function(e, i) {
+    return(parts[i].aisle == 'B3')
+});
+
+if (specPackageExist == true)
+{
+    let specPackaging = parts.filter(function(e, i) {
+        return(parts[i].aisle == 'B3');
+    });
+
+    specPackaging.forEach(function(e, i) {
+        let addText = document.createElement("p");
+        addText.textContent = `Item: ${specPackaging[i].partNbr} / Qty: ${specPackaging[i].qty}`;
+        packagingBox.appendChild(addText);
+    });
+}
+else
+{
+    packagingBox.remove();
+}
 
 // if hazardous parts exist (in aisle J4), let employee know in the "hazardousMaterials"
 // element and remind them to get gloves, else remove element
+let hazardBox = document.querySelector("#hazardousMaterials");
+
+let hazardousMat = parts.some(function(e, i) {
+    return(parts[i].aisle == 'J4')
+});
+
+if (hazardousMat == true)
+{
+    let hazardNote = document.createElement("p");
+    hazardNote.textContent = "Get gloves";
+    hazardBox.appendChild(hazardNote);
+}
+else
+{
+    hazardBox.remove();
+}
 
 // if all items in the order are small parts (aisle H1), then let employee know that they should take 
 // a basket and go dirctly to aisle H1
+let smallBox = document.querySelector("#smallItemsOnly");
+
+let onlySmall = parts.every(function(e, i) {
+    return(parts[i].aisle == 'H1');
+});
+
+if (onlySmall == true)
+{
+    let smallNote = document.createElement("p");
+    smallNote.textContent = "Get basket and go to H1";
+    smallBox.appendChild(smallNote);
+}
+else
+{
+    smallBox.remove();
+}
 
 // if there are large items (anthing in aisles S, T, or U), then let the employee know in the "forkiftNeeded"
 // element that they will need to reserve a forklift, else remove the element
+let largeBox = document.querySelector("#forkiftNeeded");
+
+let largeItems = parts.some(function(e, i) {
+    return((parts[i].aisle == 'S') || (parts[i].aisle == 'T') || (parts[i].aisle == 'U'));
+});
+
+if (largeItems == true)
+{
+    let largeNote = document.createElement("p");
+    largeNote.textContent = "Reserve a forklift";
+    largeBox.appendChild(largeNote);
+}
+else
+{
+    largeBox.remove();
+}
 
 // sum up the total number of parts and append that number to the text already in "totalItems" element
+let totalSection = document.querySelector("#totalItems");
+
+let startValue = 0;
+let totalParts = parts.reduce(function(p, c) {
+    return(p + c.qty);
+}, startValue);
+
+let totalText = document.createElement("lable");
+totalText.textContent = `: ${totalParts}`;
+totalSection.appendChild(totalText);

@@ -28,7 +28,7 @@ let listDetails = document.querySelector("#detailsList");
 parts.forEach(function(e, i) {
     let partContainer = document.createElement("div");
     let addCheckbox = document.createElement("input");
-    let addText = document.createElement("lable");
+    let addText = document.createElement("label");
     addCheckbox.setAttribute("type", "checkbox");
     addText.textContent = `${parts[i].qty} (${parts[i].partNbr}) - ${parts[i].partDescr}`;
     partContainer.appendChild(addCheckbox);
@@ -121,11 +121,8 @@ else
 // sum up the total number of parts and append that number to the text already in "totalItems" element
 let totalSection = document.querySelector("#totalItems");
 
-let startValue = 0;
 let totalParts = parts.reduce(function(p, c) {
     return(p + c.qty);
-}, startValue);
+}, 0);
 
-let totalText = document.createElement("lable");
-totalText.textContent = `: ${totalParts}`;
-totalSection.appendChild(totalText);
+totalSection.innerHTML += `: ${totalParts}`;

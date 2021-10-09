@@ -121,4 +121,4 @@ let totalParts = parts.reduce(function(p, c) {
     return(p + c.qty);
 }, 0);
 
-totalSection.innerHTML += `: ${totalParts}`;
+totalSection.textContent += `: ${totalParts}`;

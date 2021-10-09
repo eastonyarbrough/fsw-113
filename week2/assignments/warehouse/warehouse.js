@@ -40,20 +40,16 @@ parts.forEach(function(e, i) {
 // special packaging in the "specialPackaging" element, else remove element
 let packagingBox = document.querySelector("#specialPackaging");
 
-let specPackageExist = parts.some(function(e, i) {
-    return(parts[i].aisle == 'B3')
+let specPackaging = parts.filter(function(e, i) {
+    return(parts[i].aisle == 'B3');
 });
 
-if (specPackageExist == true)
+if (specPackaging.length !== 0)
 {
-    let specPackaging = parts.filter(function(e, i) {
-        return(parts[i].aisle == 'B3');
-    });
-
     specPackaging.forEach(function(e, i) {
-        let addText = document.createElement("p");
-        addText.textContent = `Item: ${specPackaging[i].partNbr} / Qty: ${specPackaging[i].qty}`;
-        packagingBox.appendChild(addText);
+    let addText = document.createElement("p");
+    addText.textContent = `Item: ${specPackaging[i].partNbr} / Qty: ${specPackaging[i].qty}`;
+    packagingBox.appendChild(addText);
     });
 }
 else
@@ -65,11 +61,11 @@ else
 // element and remind them to get gloves, else remove element
 let hazardBox = document.querySelector("#hazardousMaterials");
 
-let hazardousMat = parts.some(function(e, i) {
+let hazardousMat = parts.find(function(e, i) {
     return(parts[i].aisle == 'J4')
 });
 
-if (hazardousMat == true)
+if (hazardousMat !== undefined)
 {
     let hazardNote = document.createElement("p");
     hazardNote.textContent = "Get gloves";

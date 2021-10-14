@@ -1,12 +1,13 @@
 // declare any necessary variables
-
+let queryType;
+let itemID;
 // define a function called 'fetchData()' that passes the values from 
 // the 'queryType' and 'itemID' elements in starwars.html to the function 
 // called 'getFromSWAPI()'
 function fetchData() {
     queryType = document.querySelector("#queryType").value;
     itemID = document.querySelector("#itemID").value;
-    console.log(getFromSWAPI());
+    getFromSWAPI(queryType, itemID);
 }
 
 function getFromSWAPI() {
@@ -24,27 +25,12 @@ function getFromSWAPI() {
 }
 
 function updateInfo(data) {
-    if (queryType == "people")
-    {
-        document.querySelector("#dataLabel1").textContent = "Name: ";
-        document.querySelector("#dataLabel2").textContent = "Hair Color: "
-        document.querySelector("#dataValue1").textContent = data.name;
-        document.querySelector("#dataValue2").textContent = data.hair_color;
-    }
-    else if (queryType == "planets")
-    {
-        document.querySelector("#dataLabel1").textContent = "Name: ";
-        document.querySelector("#dataLabel2").textContent = "Diameter: "
-        document.querySelector("#dataValue1").textContent = data.name;
-        document.querySelector("#dataValue2").textContent = data.diameter;
-    }
-    else if (queryType == "starships")
-    {
-        document.querySelector("#dataLabel1").textContent = "Name: ";
-        document.querySelector("#dataLabel2").textContent = "Cost in Credits: "
-        document.querySelector("#dataValue1").textContent = data.name;
-        document.querySelector("#dataValue2").textContent = data.cost_in_credits;
-    }
+    let keys = Object.keys(data);
+
+    document.querySelector("#dataLabel1").textContent = keys[0];
+    document.querySelector("#dataLabel2").textContent = keys[3];
+    document.querySelector("#dataValue1").textContent = data[keys[0]];
+    document.querySelector("#dataValue2").textContent = data[keys[3]];
 }
 
 // create a new function called 'updateInfo()' that receives the data from 

@@ -7,12 +7,12 @@ document.querySelector("#submit").addEventListener("click", combineLists);
 
 function combineLists() {
     document.querySelector("#AllItems").textContent = "";
-    const arr1 = [document.querySelector("#scavenger-0").value.split(",")];
-    const arr2 = [document.querySelector("#scavenger-1").value.split(",")];
-    const arr3 = [document.querySelector("#scavenger-2").value.split(",")];
-    const arr4 = [document.querySelector("#scavenger-3").value.split(",")];
-    const fullArr = [...arr1, ...arr2, ...arr3, ...arr4];
-    fullArr.sort().forEach((e, i) => (document.querySelector("#AllItems").textContent += `${fullArr[i]}, `));
+    const arr1 = document.querySelector("#scavenger-0").value.split(",");
+    const arr2 = document.querySelector("#scavenger-1").value.split(",");
+    const arr3 = document.querySelector("#scavenger-2").value.split(",");
+    const arr4 = document.querySelector("#scavenger-3").value.split(",");
+    const fullArr = [...arr1, ...arr2, ...arr3, ...arr4].sort();
+    document.querySelector("#AllItems").textContent = fullArr.join(",");
 }
 
 // The following code is a bonus addition that facilitates data entry on the scavenger.html document.

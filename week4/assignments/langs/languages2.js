@@ -18,18 +18,12 @@ document.querySelector("#submit").addEventListener("click", function() {
 });
 
 function chkLang(langs) {
-    let result = false
-
     // use an array method to check whether the user included 'JavaScript' in their
     // list of languages
-    let myCheck = langs.some((e, i) => (langs[i] == lang));
-
-    if (myCheck == true){
-        result = true;
-    }
+    let result = langs.some((e, i) => (langs[i].toLowerCase() == lang.toLowerCase()));
 
     let obj = document.querySelector('#TestResult')
-    if (result) 
+    if (result == true) 
         obj.innerText = `Congratulations!\nYou know ${lang}.`
     else
         obj.innerText = `Sorry,\nyou don't know ${lang}.`

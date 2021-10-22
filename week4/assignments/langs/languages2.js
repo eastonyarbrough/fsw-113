@@ -4,16 +4,7 @@ const lang = 'JavaScript'
 // a single array using the spread operator. Call the chkLang() function, passing in 
 // the array as an argument.
 document.querySelector("#submit").addEventListener("click", function() {
-    fullArr = [
-    ...document.querySelector('#lang0').value.split(" "),
-    ...document.querySelector('#lang1').value.split(" "),
-    ...document.querySelector('#lang2').value.split(" "),
-    ...document.querySelector('#lang3').value.split(" "),
-    ...document.querySelector('#lang4').value.split(" "),
-    ...document.querySelector('#lang5').value.split(" "),
-    ...document.querySelector('#lang6').value.split(" "),
-    ...document.querySelector('#lang7').value.split(" "),
-    ]
+    fullArr = [...document.querySelectorAll("input")].map(item => (item.value));
     chkLang(fullArr);
 });
 

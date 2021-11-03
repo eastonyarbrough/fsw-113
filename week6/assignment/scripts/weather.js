@@ -13,3 +13,8 @@
 // create a function that writes the temperature (using local units), humidity, and conditions
 // this function should also change the background color of the weather app to blue during the daylight
 // hours at the specified city
+import getTime from "./getDaylight"
+
+let testLocal = "dallas"
+
+console.log(getTime(testLocal));

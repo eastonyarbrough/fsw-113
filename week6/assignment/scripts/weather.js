@@ -45,5 +45,3 @@ function displayInfo(temper, humid, cond, curTime, sunTime) {
         document.querySelector(".weatherWrapper").setAttribute("style", `background-color: ${changeColor(false)}; color: white; border-radius: 8px;`);
     }
 }
-
-test

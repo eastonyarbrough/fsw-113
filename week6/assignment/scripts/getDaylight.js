@@ -8,5 +8,3 @@ export default function changeColor(dark) {
         return "blue"
     }
 }
-
-test

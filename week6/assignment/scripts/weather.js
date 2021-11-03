@@ -3,28 +3,29 @@ import changeColor from "./getDaylight.js";
 import convertKelvin from "./convertTemp.js";
 
 // declare any variables needed
+let data;
 
 // create an event listener for the click of the goBttn that calls a function to fetch the weather data
-document.querySelector("#goBttn").addEventListener("click", () => {
+document.querySelector("#goBttn").addEventListener("click", async() => {
     let cityQuery = document.querySelector("#city").value;
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityQuery}&appid=0cbd48f13316e2c77e35baa8bdb5a0bf`)
-        .then(res => res.json())
-        .then(res => {
-            //Store and pass data
-            let dataTemp = `${convertKelvin(res.main.temp)} °F`;
-            let dataHumid = `${res.main.humidity}%`;
-            let dataCond = res.weather[0].main;
-            let dataCurTime = (new Date((res.dt - 18000) * 1000).toUTCString().split(" "))[4].split(":").join("");
-            let dataSunTime = (new Date((res.sys.sunset - 18000) * 1000).toUTCString().split(" "))[4].split(":").join("");
-            displayInfo(dataTemp, dataHumid, dataCond, dataCurTime, dataSunTime);
-        })
-        .catch(err => console.log(err))
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityQuery}&appid=0cbd48f13316e2c77e35baa8bdb5a0bf`)
+    data = await response.json();
+    apiQuery(data);
 })
 
 // create a function that calls the function that queries the api 
 // and then creates promises that will call a function to write the weather data to the HTML page        
+function apiQuery(info){
+    //Store and pass data
+    let dataTemp = `${convertKelvin(info.main.temp)} °F`;
+    let dataHumid = `${info.main.humidity}%`;
+    let dataCond = info.weather[0].main;
+    let dataCurTime = (new Date((info.dt - 18000) * 1000).toUTCString().split(" "))[4].split(":").join("");
+    let dataSunTime = (new Date((info.sys.sunset - 18000) * 1000).toUTCString().split(" "))[4].split(":").join("");
+    displayInfo(dataTemp, dataHumid, dataCond, dataCurTime, dataSunTime);
+}
 
-// use an asynchronous call to fetches the current weather for the specified city, awaits it, 
+// use an asynchronous call that fetches the current weather for the specified city, awaits it, 
 // and returns the resulting data
 
 // create a function that writes the temperature (using local units), humidity, and conditions
@@ -37,6 +38,12 @@ function displayInfo(temper, humid, cond, curTime, sunTime) {
     document.querySelector("#conditionsData").textContent = cond;
 
     //Change background if after sunset.
-    if (curTime >= sunTime) changeColor(true)
-    else changeColor(false)
+    if (curTime >= sunTime) {
+        document.querySelector(".weatherWrapper").setAttribute("style", `background-color: ${changeColor(true)}; color: white; border-radius: 8px;`);
+    }
+    else {
+        document.querySelector(".weatherWrapper").setAttribute("style", `background-color: ${changeColor(false)}; color: white; border-radius: 8px;`);
+    }
 }
+
+test

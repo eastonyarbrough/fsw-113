@@ -2,9 +2,11 @@
 // is daylight in the specified city. It should return "blue" if daylight, and "black" if night time.
 export default function changeColor(dark) {
     if (dark == true) {
-        document.querySelector(".weatherWrapper").setAttribute("style", "background-color: black; color: white; border-radius: 8px;");
+        return "black"
     }
     else {
-        document.querySelector(".weatherWrapper").setAttribute("style", "background-color: blue; color: white; border-radius: 8px;");
+        return "blue"
     }
 }
+
+test

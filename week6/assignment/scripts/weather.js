@@ -13,8 +13,13 @@
 // create a function that writes the temperature (using local units), humidity, and conditions
 // this function should also change the background color of the weather app to blue during the daylight
 // hours at the specified city
-import getTime from "./getDaylight"
+import changeColor from "./getDaylight.js"
 
-let testLocal = "dallas"
+function getTime(local) {
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${local}&appid=0cbd48f13316e2c77e35baa8bdb5a0bf`)
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+}
 
-console.log(getTime(testLocal));
+getTime("Atlanta");

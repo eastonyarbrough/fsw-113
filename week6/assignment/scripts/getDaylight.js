@@ -5,9 +5,11 @@
 // //TEST
 // console.log(new Date(1635899732));
 
-export default function getTime(local) {
-    fetch(`api.openweathermap.org/data/2.5/weather?q=${local}&appid=0cbd48f13316e2c77e35baa8bdb5a0bf`)
-        .then(res => res.json())
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+export default function changeColor(dark) {
+    if (dark == true) {
+        document.querySelector(".weatherWrapper").setAttribute("style", "background-color: blue");
+    }
+    else {
+        document.querySelector(".weatherWrapper").setAttribute("style", "background-color: blue");
+    }
 }

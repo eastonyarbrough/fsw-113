@@ -1,6 +1,9 @@
 /* Modify these styles so that the elements on the HTML page display as they do in the example */
 
 .weatherWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, fit-content);
+  grid-template-rows: repeat(6, 1fr);
   margin: 0 auto;
   width: 300px;
   margin-top: 30px;
@@ -8,10 +11,70 @@
 }
 
 .header {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
   font-size: large;
   text-align: center;
   font-weight: 700;
   padding: 8px;
+}
+
+#cityDiv {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#goBttn {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#tempLabel {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#tempData {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#humidLabel {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#humidData {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#conditionsLabel {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+#conditionsData {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 6;
 }
 
 .data {
@@ -29,4 +92,8 @@
   font-size: small;
   text-align: center;
   padding: 8px;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 6;
+  grid-row-end: 7;
 }

@@ -34,10 +34,11 @@ function apiQuery(info){
     let dataTemp = convertKelvin(info.main.temp, info.sys.country);
     let dataHumid = `${info.main.humidity}%`;
     let dataCond = info.weather[0].main;
-    let dataCurTime = (new Date((info.dt - 18000) * 1000).toUTCString().split(" "))[4].split(":").join("");
-    let dataSunRiseTime = (new Date((info.sys.sunset - 18000) * 1000).toUTCString().split(" "))[4].split(":").join("");
-    let dataSunSetTime = (new Date((info.sys.sunrise - 18000) * 1000).toUTCString().split(" "))[4].split(":").join("");
+    let dataCurTime = (new Date((info.dt + info.timezone) * 1000).toUTCString().split(" "))[4].split(":").join("");
+    let dataSunRiseTime = (new Date((info.sys.sunrise + info.timezone) * 1000).toUTCString().split(" "))[4].split(":").join("");
+    let dataSunSetTime = (new Date((info.sys.sunset + info.timezone) * 1000).toUTCString().split(" "))[4].split(":").join("");
     displayInfo(dataTemp, dataHumid, dataCond, dataCurTime, dataSunRiseTime, dataSunSetTime);
+    console.log(dataCurTime, dataSunRiseTime, dataSunSetTime);
 }
 
 // create a function that writes the temperature (using local units), humidity, and conditions
@@ -50,10 +51,10 @@ function displayInfo(temper, humid, cond, curTime, sunRiseTime, sunSetTime) {
     document.querySelector("#conditionsData").textContent = cond;
 
     //Change background if after sunset.
-    if (curTime >= sunRiseTime && curTime <= sunSetTime) {
-        document.querySelector(".weatherWrapper").setAttribute("style", `background-color: ${changeColor(true)}; color: white; border-radius: 8px;`);
+    if (curTime > sunRiseTime && curTime < sunSetTime) {
+        document.querySelector(".weatherWrapper").setAttribute("style", `background-color: ${changeColor(false)}; color: white; border-radius: 8px;`);
     }
     else {
-        document.querySelector(".weatherWrapper").setAttribute("style", `background-color: ${changeColor(false)}; color: white; border-radius: 8px;`);
+        document.querySelector(".weatherWrapper").setAttribute("style", `background-color: ${changeColor(true)}; color: white; border-radius: 8px;`);
     }
 }

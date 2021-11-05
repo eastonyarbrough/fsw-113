@@ -38,7 +38,6 @@ function apiQuery(info){
     let dataSunRiseTime = (new Date((info.sys.sunrise + info.timezone) * 1000).toUTCString().split(" "))[4].split(":").join("");
     let dataSunSetTime = (new Date((info.sys.sunset + info.timezone) * 1000).toUTCString().split(" "))[4].split(":").join("");
     displayInfo(dataTemp, dataHumid, dataCond, dataCurTime, dataSunRiseTime, dataSunSetTime);
-    console.log(dataCurTime, dataSunRiseTime, dataSunSetTime);
 }
 
 // create a function that writes the temperature (using local units), humidity, and conditions

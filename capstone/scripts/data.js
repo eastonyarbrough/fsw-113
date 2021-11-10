@@ -1,7 +1,8 @@
 // Call the "getSystems()" function in such a way that when the page loads, the "system" select element displays the three sytems 
 // whose parentID is zero.
 const subSys = document.querySelector("#subSystem");
-const system = document.querySelector("#system");
+const sys = document.querySelector("#system");
+let initLoad = true;
 
 window.addEventListener("load", () => {
     getSystems();
@@ -20,17 +21,18 @@ async function getSystems(value, element) {
     const data = await response.json()
     const sysArr = data.systems.filter((e) => (e.parentID == 0));
     
-    populateDD(sysArr, system);
+    populateDD(sysArr, sys);
 
     const subSysArr = data.systems.filter((e) => (e.parentID == value));
-
-    if (element.childElementCount == 0) {
-        for (var i = 0; i < subSysArr.length; i++) {
-            const newOpt = document.createElement("option");
-            newOpt.textContent = subSysArr[i].sysName;
-            element.appendChild(newOpt);
+    if (initLoad == false) {
+        if (element.childElementCount == 0) {
+            for (var i = 0; i < subSysArr.length; i++) {
+                const newOpt = document.createElement("option");
+                newOpt.textContent = subSysArr[i].sysName;
+                element.appendChild(newOpt);
+            }
         }
-    } 
+    }
 }
 
 // This function receives the array and DOM element from the "getSystems()" function (above). This function should fill the 
@@ -61,6 +63,7 @@ document.querySelector('#system').addEventListener("change", () => {
     for (var i = 0; i < subSysElements.length; i++) {
         subSysElements[i].remove();
     }
-
-    getSystems(system.value, subSys);
+    
+    initLoad = false;
+    getSystems(sys.value, subSys);
 });

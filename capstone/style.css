@@ -3,3 +3,95 @@
     to the example as possible. You will need to use display:grid to make the 
     bug reports display in three columns (see week 4).
 */
+
+body {
+    background: url("./images/wallpaper.jpg");
+}
+
+#reportWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 25%;
+    padding: 12px;
+}
+
+#topbar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: red;
+    width: 100%;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+#topbar>img {
+    padding: 6px;
+}
+
+.userInput {
+    width: 25vw;
+    margin: 4px;
+}
+
+#reportedBy {
+    background-color: #c2c1c9;
+    border-radius: 5px;
+}
+
+#system {
+    background-color: #c2c1c9;
+    border-radius: 5px;
+}
+
+#subSystem {
+    background-color: #c2c1c9;
+    border-radius: 5px;
+}
+
+#bugDesc {
+    background-color: #c2c1c9;
+    border-radius: 5px;
+}
+
+#resetBtn {
+    background-color: red;
+    color: white;
+    padding: 4px;
+}
+
+#submitBtn {
+    background-color: red;
+    color: white;
+    padding: 4px;
+}
+
+#listWrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 10px;
+    border: 1px solid white;
+    width: 95%;
+    margin: 0 auto;
+}
+
+#listWrapper>div {
+    border-radius: 10px;
+    margin: 8px;
+    padding: 10px 5px;
+}
+
+#listWrapper>div>button {
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    float: right;
+    width: 32px;
+    height: 32px;;
+}
